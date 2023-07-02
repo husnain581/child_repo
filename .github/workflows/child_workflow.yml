@@ -11,4 +11,5 @@ jobs:
         shell: bash
         run: |
           echo "I am Workflow of Child REPO"
-          sleep 120 s
+          sleep 120s
+
