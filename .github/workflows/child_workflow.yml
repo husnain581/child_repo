@@ -15,6 +15,7 @@ jobs:
       - name: Branch name
         run: |
           echo  "Branch : ${{ env.BRANCH_NAME }}"
+          echo EXTRACT_GITHUB_REF_HEADS=$(echo ${GITHUB_REF#refs/heads/})
          
       - name: Echo Workflow name
         shell: bash
