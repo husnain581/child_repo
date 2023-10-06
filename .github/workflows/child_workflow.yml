@@ -2,11 +2,20 @@ name: 'Workflow of Child REPO'
 
 on:
   workflow_dispatch:
+  pull_request_review:
+    types: [submitted]
+
+env:
+  BRANCH_NAME: ${{ github.ref_name || github.head_ref }}
 
 jobs: 
   trigger_workflow:
     runs-on: ubuntu-latest
     steps:
+      - name: Branch name
+        run: |
+          echo  "Branch : ${{ env.BRANCH_NAME }}"
+         
       - name: Echo Workflow name
         shell: bash
         run: |
