@@ -12,10 +12,12 @@ jobs:
   trigger_workflow:
     runs-on: ubuntu-latest
     steps:
-      - name: Branch name
-        run: |
-          echo  "Branch : ${{ env.BRANCH_NAME }}"
-          echo EXTRACT_GITHUB_REF_HEADS=$(echo ${GITHUB_REF#refs/heads/})
+      - name: Extract branch name
+        id: branch_name
+        run: echo "::set-output name=branch::$(echo $GITHUB_REF | sed 's/refs\/heads\///')"
+
+      - name: Display branch name
+        run: echo "Branch name is ${{ steps.branch_name.outputs.branch }}"
          
       - name: Echo Workflow name
         shell: bash
